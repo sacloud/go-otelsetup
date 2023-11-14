@@ -1,39 +1,33 @@
-# sacloud/go-template
+# go-otelsetup
 
-[![Go Reference](https://pkg.go.dev/badge/github.com/sacloud/go-template.svg)](https://pkg.go.dev/github.com/sacloud/go-template)
-[![Tests](https://github.com/sacloud/go-template/workflows/Tests/badge.svg)](https://github.com/sacloud/go-template/actions/workflows/tests.yaml)
-[![Go Report Card](https://goreportcard.com/badge/github.com/sacloud/go-template)](https://goreportcard.com/report/github.com/sacloud/go-template)
+opentelemetry-goを用いてOTel SDKのセットアップを行うためのライブラリ
 
-さくらのクラウド向けOSSプロダクトでのプロジェクトテンプレート(Go)
+## 利用方法
 
-## 概要
+インストール:
 
-さくらのクラウド向けOSSプロダクトでGo言語を中心に用いるプロジェクトのためのテンプレート
+    go get github.com/sacloud/go-otelsetup
 
-## 使い方
+環境変数`OTEL_EXPORTER_OTLP_ENDPOINT`でOTLPエンドポイントを指定することでトレース/メトリクスが有効になります。
 
-GitHubでリポジトリを作成する際にテンプレートとしてsacloud/go-templateを選択して作成します。  
-![テンプレートの選択](docs/new_repo.png)
+例: `OTEL_EXPORTER_OTLP_ENDPOINT=http://localhost:4317`
 
-次に`go-teplate`という文字列を自身のプロジェクトのものに置き換えてください。
+また、`OTEL_SDK_DISABLED`に空文字以外の値を指定することでトレース/メトリクスを無効化できます。
 
-例: exampleという名前のプロジェクトを作成する場合
+## 利用例
 
-```bash
-# 作成したプロジェクトのディレクトリに移動
-cd example
-# 置き換え
-find . -type f | xargs sed -i '' -e "s/go-template/example/g"
+```go
+	// SDKの初期化
+	shutdown, err := otelsetup.Init(context.Background(), "go-otelsetup", "0.0.1")
+	if err != nil {
+		panic(err)
+	}
+	defer shutdown(context.Background())
+
+	// トレースの開始
+	tracer := otel.Tracer("github.com/sacloud/go-otelsetup")
+	ctx, span := tracer.Start(context.Background(), "example")
+	defer span.End()
+
+	fmt.Println("SpanID:", trace.SpanContextFromContext(ctx).SpanID())
 ```
-
-### DockerイメージをGitHub Container Registryで公開する際の注意点
-
-デフォルトでは`CR_PAT`が渡されないためGitHub Actionsでのイメージのビルド/プッシュに失敗します。
-また、パッケージを公開したい場合は初回のみ手作業が必要です。
-
-このためDockerイメージをGitHub Container Registryで公開したい場合はオーガニゼーション管理者にご相談ください。
-
-## License
-
-`go-template` Copyright (C) 2022-2023 The sacloud/go-template authors.
-This project is published under [Apache 2.0 License](LICENSE).
