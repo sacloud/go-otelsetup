@@ -29,8 +29,11 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.21.0"
 )
 
+func Enabled() bool {
+	return os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT") != "" && os.Getenv("OTEL_SDK_DISABLED") == ""
+}
 func Init(ctx context.Context, serviceName, serviceVersion string) (shutdown func(context.Context) error, err error) {
-	if os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT") == "" || os.Getenv("OTEL_SDK_DISABLED") != "" {
+	if !Enabled() {
 		return func(ctx context.Context) error {
 			return nil
 		}, nil
