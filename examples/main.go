@@ -37,13 +37,18 @@ func main() {
 	//
 	//  $ open http://localhost:16686
 
-	shutdown, err := otelsetup.Init(context.Background(), "go-otelsetup", version.Version)
+	shutdown, err := otelsetup.InitWithOptions(context.Background(),
+		otelsetup.Options{
+			ServiceName:      "otelsetup",
+			ServiceVersion:   version.Version,
+			ServiceNamespace: "sacloud",
+		})
 	if err != nil {
 		panic(err)
 	}
 	defer shutdown(context.Background())
 
-	tracer := otel.Tracer("github.com/sacloud/go-otelsetup")
+	tracer := otel.Tracer("go-otelsetup")
 	ctx, span := tracer.Start(context.Background(), "example")
 	defer span.End()
 
