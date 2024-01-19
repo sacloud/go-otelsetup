@@ -29,10 +29,22 @@ import (
 	semconv "go.opentelemetry.io/otel/semconv/v1.21.0"
 )
 
+type Options struct {
+	ServiceName      string
+	ServiceVersion   string
+	ServiceNamespace string
+}
+
 func Enabled() bool {
 	return os.Getenv("OTEL_EXPORTER_OTLP_ENDPOINT") != "" && os.Getenv("OTEL_SDK_DISABLED") == ""
 }
 func Init(ctx context.Context, serviceName, serviceVersion string) (shutdown func(context.Context) error, err error) {
+	return InitWithOptions(ctx, Options{
+		ServiceName:    serviceName,
+		ServiceVersion: serviceVersion,
+	})
+}
+func InitWithOptions(ctx context.Context, opts Options) (shutdown func(context.Context) error, err error) {
 	if !Enabled() {
 		return func(ctx context.Context) error {
 			return nil
@@ -59,7 +71,7 @@ func Init(ctx context.Context, serviceName, serviceVersion string) (shutdown fun
 	}
 
 	// Set up resource.
-	res, err := newResource(serviceName, serviceVersion)
+	res, err := newResource(opts)
 	if err != nil {
 		handleErr(err)
 		return
@@ -89,12 +101,28 @@ func Init(ctx context.Context, serviceName, serviceVersion string) (shutdown fun
 	return
 }
 
-func newResource(serviceName, serviceVersion string) (*resource.Resource, error) {
-	return resource.Merge(resource.Default(),
-		resource.NewWithAttributes(semconv.SchemaURL,
-			semconv.ServiceName(serviceName),
-			semconv.ServiceVersion(serviceVersion),
-		))
+func newResource(opts Options) (*resource.Resource, error) {
+	hostname, err := os.Hostname()
+	if err != nil {
+		return nil, err
+	}
+
+	return resource.New(context.Background(),
+		resource.WithFromEnv(),
+		resource.WithTelemetrySDK(),
+		resource.WithHost(),
+		resource.WithHostID(),
+		resource.WithProcess(),
+		resource.WithOS(),
+		resource.WithContainer(),
+		resource.WithSchemaURL(semconv.SchemaURL),
+		resource.WithAttributes(
+			semconv.ServiceName(opts.ServiceName),
+			semconv.ServiceVersion(opts.ServiceVersion),
+			semconv.ServiceNamespace(opts.ServiceNamespace),
+			semconv.ServiceInstanceID(hostname),
+		),
+	)
 }
 
 func newPropagator() propagation.TextMapPropagator {
