@@ -1,6 +1,6 @@
 #====================
 AUTHOR         ?= The sacloud/go-otelsetup Authors
-COPYRIGHT_YEAR ?= 2022-2023
+COPYRIGHT_YEAR ?= 2023-2025
 
 BIN            ?= go-otelsetup
 GO_FILES       ?= $(shell find . -name '*.go')
