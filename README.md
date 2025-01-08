@@ -31,3 +31,8 @@ opentelemetry-goを用いてOTel SDKのセットアップを行うためのラ�
 
 	fmt.Println("SpanID:", trace.SpanContextFromContext(ctx).SpanID())
 ```
+
+## License
+
+`go-otelsetup` Copyright (C) 2023-2025 The sacloud/go-otelsetup authors.
+This project is published under [Apache 2.0 License](LICENSE).
