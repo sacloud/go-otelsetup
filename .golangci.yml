@@ -9,7 +9,6 @@ linters:
   disable-all: true
   enable:
     - errcheck
-    - exportloopref
     - gocritic
     - gofmt
     - goimports
@@ -29,6 +28,7 @@ linters:
   #  - asciicheck
   #  - dogsled
   #  - dupl
+  #  - exportloopref
   #  - funlen
   #  - gochecknoinits
   #  - gochecknoglobals

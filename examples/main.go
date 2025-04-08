@@ -18,7 +18,7 @@ import (
 	"context"
 	"fmt"
 
-	"github.com/sacloud/go-otelsetup"
+	otelsetup "github.com/sacloud/go-otelsetup"
 	"github.com/sacloud/go-otelsetup/version"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/trace"
