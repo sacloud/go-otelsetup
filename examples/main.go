@@ -46,7 +46,7 @@ func main() {
 	if err != nil {
 		panic(err)
 	}
-	defer shutdown(context.Background())
+	defer shutdown(context.Background()) //nolint:errcheck
 
 	tracer := otel.Tracer("go-otelsetup")
 	ctx, span := tracer.Start(context.Background(), "example")

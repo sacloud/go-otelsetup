@@ -74,7 +74,7 @@ func InitWithOptions(ctx context.Context, opts Options) (shutdown func(context.C
 	res, err := newResource(opts)
 	if err != nil {
 		handleErr(err)
-		return
+		return shutdown, err
 	}
 
 	// Set up propagator.
@@ -84,7 +84,7 @@ func InitWithOptions(ctx context.Context, opts Options) (shutdown func(context.C
 	tracerProvider, err := newTraceProvider(ctx, res)
 	if err != nil {
 		handleErr(err)
-		return
+		return shutdown, err
 	}
 	shutdownFuncs = append(shutdownFuncs, tracerProvider.Shutdown)
 	otel.SetTracerProvider(tracerProvider)
@@ -93,12 +93,12 @@ func InitWithOptions(ctx context.Context, opts Options) (shutdown func(context.C
 	meterProvider, err := newMeterProvider(ctx, res)
 	if err != nil {
 		handleErr(err)
-		return
+		return shutdown, err
 	}
 	shutdownFuncs = append(shutdownFuncs, meterProvider.Shutdown)
 	otel.SetMeterProvider(meterProvider)
 
-	return
+	return shutdown, err
 }
 
 func newResource(opts Options) (*resource.Resource, error) {

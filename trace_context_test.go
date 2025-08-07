@@ -32,10 +32,10 @@ func TestContextForTrace(t *testing.T) {
 
 	// 環境変数を仕込む
 	// ref: https://www.w3.org/TR/trace-context/#traceparent-header-field-values
-	os.Setenv("traceparent", "00-00000000001111111111222222222233-0000000000111111-00")
+	os.Setenv("traceparent", "00-00000000001111111111222222222233-0000000000111111-00") //nolint:errcheck,gosec
 
 	traceState := "foo=bar"
-	os.Setenv("tracestate", traceState)
+	os.Setenv("tracestate", traceState) //nolint:errcheck,gosec
 
 	ctx, span := otel.Tracer("test").Start(context.Background(), "span2")
 	defer span.End()
