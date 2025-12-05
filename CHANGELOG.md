@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.6.0](https://github.com/sacloud/go-otelsetup/compare/v0.5.0...v0.6.0) - 2025-12-05
+- textlint: ignore CHANGELOG.md by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/110
+- ci: bump actions/checkout from 4 to 6 by @dependabot[bot] in https://github.com/sacloud/go-otelsetup/pull/109
+- ci: bump actions/setup-go from 5 to 6 by @dependabot[bot] in https://github.com/sacloud/go-otelsetup/pull/108
+- go.opentelemetry.io/otel v1.38.0 by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/112
+
 ## [v0.5.0](https://github.com/sacloud/go-otelsetup/compare/v0.4.0...v0.5.0) - 2025-08-07
 - golangci-lint v2 by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/98
 - goreleaser -> tagpr by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/99
