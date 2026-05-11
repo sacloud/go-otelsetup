@@ -1,5 +1,8 @@
 # Changelog
 
+## [v0.8.0](https://github.com/sacloud/go-otelsetup/compare/v0.7.0...v0.8.0) - 2026-05-11
+- deps: upgrade OpenTelemetry Go modules to v1.43.0 by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/126
+
 ## [v0.7.0](https://github.com/sacloud/go-otelsetup/compare/v0.6.0...v0.7.0) - 2026-02-24
 - go.opentelemetry.io/otel v1.39.0 by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/118
 - go.opentelemetry.io/otel v1.39.0 by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/120
