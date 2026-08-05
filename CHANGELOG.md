@@ -1,5 +1,11 @@
 # Changelog
 
+## [v0.9.0](https://github.com/sacloud/go-otelsetup/compare/v0.8.0...v0.9.0) - 2026-08-05
+
+- ci: bump actions/setup-go from 6 to 7 by @dependabot[bot] in https://github.com/sacloud/go-otelsetup/pull/134
+- ci: bump actions/checkout from 6 to 7 by @dependabot[bot] in https://github.com/sacloud/go-otelsetup/pull/133
+- chore: update otel dependencies to v1.45.0 and semconv to v1.43.0 by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/136
+
 ## [v0.8.0](https://github.com/sacloud/go-otelsetup/compare/v0.7.0...v0.8.0) - 2026-05-11
 - deps: upgrade OpenTelemetry Go modules to v1.43.0 by @yamamoto-febc in https://github.com/sacloud/go-otelsetup/pull/126
 
