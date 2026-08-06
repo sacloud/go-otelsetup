@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.9.1](https://github.com/sacloud/go-otelsetup/compare/v0.9.0...v0.9.1) - 2026-08-06
+
+- pin actions by @tokuhirom in https://github.com/sacloud/go-otelsetup/pull/137
+
 ## [v0.9.0](https://github.com/sacloud/go-otelsetup/compare/v0.8.0...v0.9.0) - 2026-08-05
 
 - ci: bump actions/setup-go from 6 to 7 by @dependabot[bot] in https://github.com/sacloud/go-otelsetup/pull/134
