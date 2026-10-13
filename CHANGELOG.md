@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.9.1](https://github.com/sacloud/go-otelsetup/compare/v0.9.0...v0.9.1) - 2026-10-13
+
+- pin actions by @tokuhirom in https://github.com/sacloud/go-otelsetup/pull/137
+- ci: bump Songmu/tagpr from 1.20.1 to 1.21.2 by @dependabot[bot] in https://github.com/sacloud/go-otelsetup/pull/148
+- ci: group OpenTelemetry Dependabot updates by @tokuhirom in https://github.com/sacloud/go-otelsetup/pull/149
+- go: bump the otel group with 6 updates by @dependabot[bot] in https://github.com/sacloud/go-otelsetup/pull/150
+- chore: update Go toolchain and golangci-lint by @tokuhirom in https://github.com/sacloud/go-otelsetup/pull/151
+- Potential fix for code scanning alert no. 10: Workflow does not contain permissions by @tokuhirom in https://github.com/sacloud/go-otelsetup/pull/152
+- Potential fix for code scanning alert no. 1: Workflow does not contain permissions by @tokuhirom in https://github.com/sacloud/go-otelsetup/pull/153
+
 ## [v0.9.0](https://github.com/sacloud/go-otelsetup/compare/v0.8.0...v0.9.0) - 2026-08-05
 
 - ci: bump actions/setup-go from 6 to 7 by @dependabot[bot] in https://github.com/sacloud/go-otelsetup/pull/134
