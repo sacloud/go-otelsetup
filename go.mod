@@ -2,7 +2,7 @@ module github.com/sacloud/go-otelsetup
 
 go 1.26.0
 
-toolchain go1.27.2
+toolchain go1.27.3
 
 require (
 	go.opentelemetry.io/otel v1.47.0
