@@ -1,5 +1,9 @@
 # Changelog
 
+## [v0.9.2](https://github.com/sacloud/go-otelsetup/compare/v0.9.1...v0.9.2) - 2026-10-22
+
+- go.mod: toolchain go1.27.3 by @shyouhei in https://github.com/sacloud/go-otelsetup/pull/155
+
 ## [v0.9.1](https://github.com/sacloud/go-otelsetup/compare/v0.9.0...v0.9.1) - 2026-10-13
 
 - pin actions by @tokuhirom in https://github.com/sacloud/go-otelsetup/pull/137
